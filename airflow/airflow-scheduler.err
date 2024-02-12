@@ -1,0 +1,5 @@
+[2024-02-12 19:59:45 +0000] [25116] [INFO] Starting gunicorn 21.2.0
+[2024-02-12 19:59:45 +0000] [25116] [INFO] Listening at: http://[::]:8793 (25116)
+[2024-02-12 19:59:45 +0000] [25116] [INFO] Using worker: sync
+[2024-02-12 19:59:45 +0000] [25117] [INFO] Booting worker with pid: 25117
+[2024-02-12 19:59:45 +0000] [25119] [INFO] Booting worker with pid: 25119
