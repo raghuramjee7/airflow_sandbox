@@ -6,3 +6,4 @@
 [[34m2024-02-12T19:59:45.251+0000[0m] {[34mscheduler_job_runner.py:[0m1619} INFO[0m - Adopting or resetting orphaned tasks for active dag runs[0m
 [[34m2024-02-12T19:59:45.254+0000[0m] {[34msettings.py:[0m61} INFO[0m - Configured default timezone Timezone('UTC')[0m
 [2024-02-12T19:59:45.283+0000] {manager.py:392} WARNING - Because we cannot use more than 1 thread (parsing_processes = 2) when using sqlite. So we set parallelism to 1.
+[[34m2024-02-12T20:04:45.459+0000[0m] {[34mscheduler_job_runner.py:[0m1619} INFO[0m - Adopting or resetting orphaned tasks for active dag runs[0m

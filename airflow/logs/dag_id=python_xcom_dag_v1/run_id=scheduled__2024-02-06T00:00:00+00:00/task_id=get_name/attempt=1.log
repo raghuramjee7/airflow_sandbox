@@ -1,0 +1,26 @@
+[2024-02-14T10:36:07.341+0000] {taskinstance.py:1957} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: python_xcom_dag_v1.get_name scheduled__2024-02-06T00:00:00+00:00 [queued]>
+[2024-02-14T10:36:07.345+0000] {taskinstance.py:1957} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: python_xcom_dag_v1.get_name scheduled__2024-02-06T00:00:00+00:00 [queued]>
+[2024-02-14T10:36:07.346+0000] {taskinstance.py:2171} INFO - Starting attempt 1 of 6
+[2024-02-14T10:36:07.382+0000] {taskinstance.py:2192} INFO - Executing <Task(PythonOperator): get_name> on 2024-02-06 00:00:00+00:00
+[2024-02-14T10:36:07.386+0000] {standard_task_runner.py:60} INFO - Started process 52665 to run task
+[2024-02-14T10:36:07.388+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'python_xcom_dag_v1', 'get_name', 'scheduled__2024-02-06T00:00:00+00:00', '--job-id', '197', '--raw', '--subdir', 'DAGS_FOLDER/dag_with_xcoms.py', '--cfg-path', '/tmp/tmpx4ki8d4e']
+[2024-02-14T10:36:07.389+0000] {standard_task_runner.py:88} INFO - Job 197: Subtask get_name
+[2024-02-14T10:36:07.446+0000] {task_command.py:423} INFO - Running <TaskInstance: python_xcom_dag_v1.get_name scheduled__2024-02-06T00:00:00+00:00 [running]> on host codespaces-57ffd0
+[2024-02-14T10:36:07.539+0000] {taskinstance.py:2481} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='raghu' AIRFLOW_CTX_DAG_ID='python_xcom_dag_v1' AIRFLOW_CTX_TASK_ID='get_name' AIRFLOW_CTX_EXECUTION_DATE='2024-02-06T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-02-06T00:00:00+00:00'
+[2024-02-14T10:36:07.571+0000] {python.py:201} INFO - Done. Returned value was: None
+[2024-02-14T10:36:07.577+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=python_xcom_dag_v1, task_id=get_name, execution_date=20240206T000000, start_date=20240214T103607, end_date=20240214T103607
+[2024-02-14T10:36:07.640+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2024-02-14T10:36:07.663+0000] {taskinstance.py:3281} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-02-14T10:40:18.408+0000] {taskinstance.py:1957} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: python_xcom_dag_v1.get_name scheduled__2024-02-06T00:00:00+00:00 [queued]>
+[2024-02-14T10:40:18.413+0000] {taskinstance.py:1957} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: python_xcom_dag_v1.get_name scheduled__2024-02-06T00:00:00+00:00 [queued]>
+[2024-02-14T10:40:18.413+0000] {taskinstance.py:2171} INFO - Starting attempt 1 of 6
+[2024-02-14T10:40:18.453+0000] {taskinstance.py:2192} INFO - Executing <Task(PythonOperator): get_name> on 2024-02-06 00:00:00+00:00
+[2024-02-14T10:40:18.458+0000] {standard_task_runner.py:60} INFO - Started process 56608 to run task
+[2024-02-14T10:40:18.465+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'python_xcom_dag_v1', 'get_name', 'scheduled__2024-02-06T00:00:00+00:00', '--job-id', '198', '--raw', '--subdir', 'DAGS_FOLDER/dag_with_xcoms.py', '--cfg-path', '/tmp/tmpsq8yw5iz']
+[2024-02-14T10:40:18.467+0000] {standard_task_runner.py:88} INFO - Job 198: Subtask get_name
+[2024-02-14T10:40:18.523+0000] {task_command.py:423} INFO - Running <TaskInstance: python_xcom_dag_v1.get_name scheduled__2024-02-06T00:00:00+00:00 [running]> on host codespaces-57ffd0
+[2024-02-14T10:40:18.623+0000] {taskinstance.py:2481} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='raghu' AIRFLOW_CTX_DAG_ID='python_xcom_dag_v1' AIRFLOW_CTX_TASK_ID='get_name' AIRFLOW_CTX_EXECUTION_DATE='2024-02-06T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-02-06T00:00:00+00:00'
+[2024-02-14T10:40:18.656+0000] {python.py:201} INFO - Done. Returned value was: None
+[2024-02-14T10:40:18.659+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=python_xcom_dag_v1, task_id=get_name, execution_date=20240206T000000, start_date=20240214T104018, end_date=20240214T104018
+[2024-02-14T10:40:18.714+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2024-02-14T10:40:18.816+0000] {taskinstance.py:3281} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,40 @@
+[2024-02-14T10:36:57.835+0000] {taskinstance.py:1957} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: python_xcom_dag_v1.greet scheduled__2024-02-11T00:00:00+00:00 [queued]>
+[2024-02-14T10:36:57.841+0000] {taskinstance.py:1957} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: python_xcom_dag_v1.greet scheduled__2024-02-11T00:00:00+00:00 [queued]>
+[2024-02-14T10:36:57.841+0000] {taskinstance.py:2171} INFO - Starting attempt 1 of 6
+[2024-02-14T10:36:57.882+0000] {taskinstance.py:2192} INFO - Executing <Task(PythonOperator): greet> on 2024-02-11 00:00:00+00:00
+[2024-02-14T10:36:57.886+0000] {standard_task_runner.py:60} INFO - Started process 53703 to run task
+[2024-02-14T10:36:57.889+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'python_xcom_dag_v1', 'greet', 'scheduled__2024-02-11T00:00:00+00:00', '--job-id', '217', '--raw', '--subdir', 'DAGS_FOLDER/dag_with_xcoms.py', '--cfg-path', '/tmp/tmpq57em9jl']
+[2024-02-14T10:36:57.890+0000] {standard_task_runner.py:88} INFO - Job 217: Subtask greet
+[2024-02-14T10:36:57.951+0000] {task_command.py:423} INFO - Running <TaskInstance: python_xcom_dag_v1.greet scheduled__2024-02-11T00:00:00+00:00 [running]> on host codespaces-57ffd0
+[2024-02-14T10:36:58.051+0000] {taskinstance.py:2481} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='raghu' AIRFLOW_CTX_DAG_ID='python_xcom_dag_v1' AIRFLOW_CTX_TASK_ID='greet' AIRFLOW_CTX_EXECUTION_DATE='2024-02-11T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-02-11T00:00:00+00:00'
+[2024-02-14T10:36:58.051+0000] {taskinstance.py:2699} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/codespace/.local/share/virtualenvs/airflow_sandbox-vp-HKq_L/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/codespace/.local/share/virtualenvs/airflow_sandbox-vp-HKq_L/lib/python3.10/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/codespace/.local/share/virtualenvs/airflow_sandbox-vp-HKq_L/lib/python3.10/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/workspaces/airflow_sandbox/airflow/dags/dag_with_xcoms.py", line 7, in greet
+    name = ti.xcom_pull(task_id = "get_name", key = "name")
+  File "/home/codespace/.local/share/virtualenvs/airflow_sandbox-vp-HKq_L/lib/python3.10/site-packages/airflow/utils/session.py", line 79, in wrapper
+    return func(*args, session=session, **kwargs)
+TypeError: TaskInstance.xcom_pull() got an unexpected keyword argument 'task_id'
+[2024-02-14T10:36:58.055+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=python_xcom_dag_v1, task_id=greet, execution_date=20240211T000000, start_date=20240214T103657, end_date=20240214T103658
+[2024-02-14T10:36:58.088+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 217 for task greet (TaskInstance.xcom_pull() got an unexpected keyword argument 'task_id'; 53703)
+[2024-02-14T10:36:58.101+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-02-14T10:36:58.111+0000] {taskinstance.py:3281} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-02-14T10:41:05.277+0000] {taskinstance.py:1957} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: python_xcom_dag_v1.greet scheduled__2024-02-11T00:00:00+00:00 [queued]>
+[2024-02-14T10:41:05.284+0000] {taskinstance.py:1957} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: python_xcom_dag_v1.greet scheduled__2024-02-11T00:00:00+00:00 [queued]>
+[2024-02-14T10:41:05.285+0000] {taskinstance.py:2171} INFO - Starting attempt 1 of 6
+[2024-02-14T10:41:05.327+0000] {taskinstance.py:2192} INFO - Executing <Task(PythonOperator): greet> on 2024-02-11 00:00:00+00:00
+[2024-02-14T10:41:05.331+0000] {standard_task_runner.py:60} INFO - Started process 57469 to run task
+[2024-02-14T10:41:05.337+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'python_xcom_dag_v1', 'greet', 'scheduled__2024-02-11T00:00:00+00:00', '--job-id', '217', '--raw', '--subdir', 'DAGS_FOLDER/dag_with_xcoms.py', '--cfg-path', '/tmp/tmpy5b8zmy5']
+[2024-02-14T10:41:05.338+0000] {standard_task_runner.py:88} INFO - Job 217: Subtask greet
+[2024-02-14T10:41:05.401+0000] {task_command.py:423} INFO - Running <TaskInstance: python_xcom_dag_v1.greet scheduled__2024-02-11T00:00:00+00:00 [running]> on host codespaces-57ffd0
+[2024-02-14T10:41:05.528+0000] {taskinstance.py:2481} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='raghu' AIRFLOW_CTX_DAG_ID='python_xcom_dag_v1' AIRFLOW_CTX_TASK_ID='greet' AIRFLOW_CTX_EXECUTION_DATE='2024-02-11T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-02-11T00:00:00+00:00'
+[2024-02-14T10:41:05.534+0000] {logging_mixin.py:188} INFO - My name is Raghu and I am 22 years old
+[2024-02-14T10:41:05.535+0000] {python.py:201} INFO - Done. Returned value was: None
+[2024-02-14T10:41:05.538+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=python_xcom_dag_v1, task_id=greet, execution_date=20240211T000000, start_date=20240214T104105, end_date=20240214T104105
+[2024-02-14T10:41:05.590+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2024-02-14T10:41:05.611+0000] {taskinstance.py:3281} INFO - 0 downstream tasks scheduled from follow-on schedule check
