@@ -103,3 +103,37 @@ task_1 = PythonOperator(
 3. By default, all return values from functions are pushed to XComs
 4. We do not use XComs to share large data, we use it to share metadata, the max limit of xcom is 48kb, although it varies with the backend db
 5. We use `ti` or also called, task instance object to pusha and pull data from XComs, we use xcom_push and xcom_pull methods of ti object.
+```
+from airflow.operators.python import PythonOperator
+
+def greet(ti):
+    # pull data from ti
+    name = ti.xcom_pull(task_ids = "get_name", key = "name")
+    age = ti.xcom_pull(task_ids = "get_age", key = "age")
+
+    print(f"My name is {name} and I am {age} years old")
+
+def returns_name(ti):
+    # we can simply return like this return {"name": "Raghu"}
+    # push data
+    ti.xcom_push(key="name", value="Raghu")
+
+def returns_age(ti):
+    # push data
+    ti.xcom_push(key="age", value=22)
+
+task_1 = PythonOperator(
+        task_id = "get_name",
+        python_callable = returns_name,
+    )
+    task_2 = PythonOperator(
+        task_id = "get_age",
+        python_callable = returns_age,
+    )
+    task_3 = PythonOperator(
+        task_id = "greet",
+        python_callable = greet,
+    )
+
+    [task_1, task_2] >> task_3
+```
