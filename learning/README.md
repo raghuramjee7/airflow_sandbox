@@ -137,3 +137,105 @@ task_1 = PythonOperator(
 
     [task_1, task_2] >> task_3
 ```
+
+### TaskFlow API
+1. We use taskflow api to reduce the number of lines of code that we use.
+2. Sample DAG with TaskFlow API - 
+```
+from airflow.decorators import dag, task
+from datetime import datetime, timedelta
+
+default_args = {
+    "owner": "raghu",
+    "retries": 5,
+    "retry_delay": timedelta(minutes=5),
+}
+
+# we use the dag decorator to define the DAG
+@dag(
+    dag_id = "taskflow_api_dag_v1",
+    description = "My DAG with taskflow api",
+    default_args= default_args,
+    start_date = datetime(2024, 2, 1, 2),
+    schedule_interval = "@daily",
+)
+def hello_world_etl():
+    
+    # we use the task decorator to define the task
+    # we define that multiple outputs are returned here
+    @task(multiple_outputs = True)
+    def get_name():
+        return {
+            "first_name": "raghu",
+            "last_name": "ramjee"
+        }
+
+    @task()
+    def get_age():
+        return 22
+    
+    @task()
+    def greet(first_name, last_name, age):
+        print(f"My name is {first_name} {last_name} and I am {age} years old")
+        
+    name = get_name()
+    age = get_age()
+    greet(first_name=name["first_name"], 
+          last_name=name["last_name"], 
+          age=age)
+
+greet_dag = hello_world_etl()
+```
+
+### Catchup and Backfill
+1. In Airflow we have two concepts, catchup and backfill
+2. Catchup or Backfill is the process of running all the tasks that have been missed while the dag was paused
+3. When we define the DAG, we have a parameter called catchup, which is set to True by default. We can set it to False to disable catchup - `catchup = False`
+4. By default, catchup is set to True, which means that all the tasks that have been missed will be run when the dag is unpaused
+5. We can also use the backfill command to run the missed tasks - `airflow dags backfill -s <start_date> (eg - 2023-12-01) -e <end_date> <dag_id>`
+
+### CRON Expressions
+1. We can use cron expressions, timedetla objects to define the schedule interval
+![alt text](image-4.png)
+![alt text](image-5.png)
+2. Use crontab guru to check cron expressions meaning
+
+### Connect with Postgres
+1. Go to Admin -> Connections to create a new connection
+2. We can setup all the values of the connection, if the postgres connection type is not avaialable, we need to install the postgres provider - `pipenv install apache-airflow-providers-postgres` and restart the webserver.
+3. Once the connection is created, we can use that connection_id to interact with the db.
+```
+from airflow import DAG
+from airflow.providers.postgres.operators.postgres import PostgresOperator
+from datetime import datetime, timedelta
+
+# Common Parameters to intiate the operator
+default_args = {
+    "owner": "raghu",
+    "retries": 5,
+    "retry_delay": timedelta(minutes=5),
+}
+
+# Create an instance of DAG
+with DAG(
+    dag_id = "dag_with_postgres_operator", # id of dag
+    description = "demo first dag", # description
+    default_args = default_args, # default parameters of dag
+    # parameters for start date and interval
+    start_date = datetime(2024, 2, 1, 2), # start from 2024 feb 1 everyday at 2am
+    schedule_interval = "@daily", # everyday
+    catchup = False,
+
+) as dag:
+    task = PostgresOperator(
+        task_id = "create_table_in_pg_db", # id of task
+        postgres_conn_id = "postgres_db_connection", # connection id of postgres
+        sql = "create table if not exists dag_runs (name varchar(50), age int);", # sql query
+    )
+    task2 = PostgresOperator(
+        task_id = "insert_data_into_pg_db", # id of task
+        postgres_conn_id = "postgres_db_connection", # connection id of postgres
+        sql = "insert into dag_runs values('Raghu', 25);", # sql query
+    )
+    task >> task2
+```
